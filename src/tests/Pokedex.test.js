@@ -184,9 +184,13 @@ describe('Testando o componente Pokedex', () => {
     const btnFilterAll = screen.getByRole('button', { name: /all/i });
     expect(btnFilterAll).toBeInTheDocument();
     // Ao carregar a página, o filtro selecionado deverá ser All
-    expect(pokemons).toBeDefined();
+    for (let index = 0; index < pokemons; index += 1) {
+      expect(screen.getByText(pokemons[index].name)).toBeInTheDocument();
+    }
     // A Pokedéx deverá mostrar os Pokémons normalmente (sem filtros) quando o botão All for clicado
     userEvent.click(btnFilterAll);
-    expect(pokemons).toBeDefined();
+    for (let index = 0; index < pokemons; index += 1) {
+      expect(screen.getByText(pokemons[index].name)).toBeInTheDocument();
+    }
   });
 });
